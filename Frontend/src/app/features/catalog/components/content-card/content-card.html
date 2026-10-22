@@ -1,0 +1,15 @@
+<a class="content-card" [routerLink]="['/catalog', content.id]">
+  <div class="artwork">
+    <img
+      [src]="coverImage(content)"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      (error)="handleImageError($event, content)"
+    />
+  </div>
+  <div class="card-copy">
+    <h3>{{ content.title }}</h3>
+    <p>{{ content.type === 'Anime' ? 'Anime' : 'Película' }}</p>
+  </div>
+</a>

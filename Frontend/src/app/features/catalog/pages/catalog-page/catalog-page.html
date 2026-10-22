@@ -1,29 +1,58 @@
-<h1>Catálogo</h1>
-
-@if (loading()) {
-  <p role="status">Cargando contenido...</p>
-} @else if (error()) {
-  <p role="alert">{{ error() }}</p>
-} @else {
-  <div class="catalog">
-    @for (content of contents(); track content.id) {
-      <article>
-        @if (content.coverImageUrl) {
-          <img [src]="content.coverImageUrl" [alt]="content.title" />
+<section class="catalog-page page-container" aria-labelledby="catalog-title">
+  <div class="catalog-toolbar">
+    <h1 id="catalog-title">Explorar</h1>
+    <div class="catalog-filters" role="search" aria-label="Filtrar catálogo">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 4 4" />
+        </svg>
+        <input
+          type="search"
+          placeholder="Buscar títulos"
+          aria-label="Buscar títulos"
+          [ngModel]="search()"
+          (ngModelChange)="search.set($event)"
+        />
+      </div>
+      <select
+        aria-label="Tipo de contenido"
+        [ngModel]="selectedType()"
+        (ngModelChange)="selectedType.set($event)"
+      >
+        <option value="">Tipo</option>
+        <option value="Anime">Anime</option>
+        <option value="Movie">Película</option>
+      </select>
+      <select
+        aria-label="Género"
+        [ngModel]="selectedGenre()"
+        (ngModelChange)="selectedGenre.set($event)"
+      >
+        <option value="">Género</option>
+        @for (genre of genres(); track genre) {
+          <option [value]="genre">{{ genre }}</option>
         }
-        <span>{{ content.type === 'Anime' ? 'Anime' : 'Película' }}</span>
-        <h2>
-          <a [routerLink]="['/catalog', content.id]">{{ content.title }}</a>
-        </h2>
-        <p>{{ content.description }}</p>
-        <div class="genres">
-          @for (genre of content.genres; track genre) {
-            <span>{{ genre }}</span>
-          }
-        </div>
-      </article>
-    } @empty {
-      <p>No hay contenido disponible.</p>
-    }
+      </select>
+    </div>
   </div>
-}
+
+  @if (loading()) {
+    <p class="notice" role="status">Cargando contenido...</p>
+  } @else if (error()) {
+    <p class="notice" role="alert">{{ error() }}</p>
+  } @else if (!contents().length) {
+    <p class="notice">Todavía no hay contenido en el catálogo.</p>
+  } @else {
+    <div class="catalog-grid">
+      @for (content of filteredContents(); track content.id) {
+        <app-content-card [content]="content" />
+      } @empty {
+        <div class="empty-results" role="status">
+          <p>No se encontraron títulos con estos filtros.</p>
+          <button type="button" (click)="resetFilters()">Restablecer filtros</button>
+        </div>
+      }
+    </div>
+  }
+</section>
