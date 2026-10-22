@@ -1,9 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Content } from '../../models/content';
 import { ContentService } from '../../services/content.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-page',
+  imports: [RouterLink],
   templateUrl: './catalog-page.html',
   styleUrl: './catalog-page.css'
 })

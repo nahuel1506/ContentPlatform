@@ -20,6 +20,11 @@ h2 {
   font-size: 1.1rem;
 }
 
+h2 a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
 .genres {
   display: flex;
   flex-wrap: wrap;

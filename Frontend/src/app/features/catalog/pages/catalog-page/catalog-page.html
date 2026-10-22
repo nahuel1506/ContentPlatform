@@ -12,7 +12,9 @@
           <img [src]="content.coverImageUrl" [alt]="content.title" />
         }
         <span>{{ content.type === 'Anime' ? 'Anime' : 'Película' }}</span>
-        <h2>{{ content.title }}</h2>
+        <h2>
+          <a [routerLink]="['/catalog', content.id]">{{ content.title }}</a>
+        </h2>
         <p>{{ content.description }}</p>
         <div class="genres">
           @for (genre of content.genres; track genre) {

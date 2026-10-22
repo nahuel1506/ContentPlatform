@@ -9,4 +9,8 @@ export class ContentService {
   getAll() {
     return this.http.get<Content[]>('/api/contents');
   }
+
+  getById(id: string) {
+    return this.http.get<Content>(`/api/contents/${encodeURIComponent(id)}`);
+  }
 }
