@@ -1,23 +1,27 @@
-<a routerLink="/">Volver al catálogo</a>
-
-@if (loading()) {
-  <p role="status">Cargando contenido...</p>
-} @else if (error()) {
-  <p role="alert">{{ error() }}</p>
-} @else if (content(); as selected) {
-  <article>
-    @if (selected.coverImageUrl) {
-      <img [src]="selected.coverImageUrl" [alt]="selected.title" />
-    }
-    <div>
-      <p>{{ selected.type === 'Anime' ? 'Anime' : 'Película' }}</p>
-      <h1>{{ selected.title }}</h1>
-      <p>{{ selected.description }}</p>
-      <ul aria-label="Géneros">
-        @for (genre of selected.genres; track genre) {
-          <li>{{ genre }}</li>
-        }
-      </ul>
-    </div>
-  </article>
-}
+<section class="detail-page page-container">
+  <a class="back-link" routerLink="/catalog">Catálogo</a>
+  @if (loading()) {
+    <p class="notice" role="status">Cargando contenido...</p>
+  } @else if (error()) {
+    <p class="notice" role="alert">{{ error() }}</p>
+  } @else if (content(); as selected) {
+    <article class="detail-layout">
+      <img
+        class="detail-poster"
+        [src]="coverImage(selected)"
+        [alt]="selected.title"
+        (error)="handleImageError($event, selected)"
+      />
+      <div class="detail-copy">
+        <h1>{{ selected.title }}</h1>
+        <p class="content-type">{{ selected.type === 'Anime' ? 'Anime' : 'Película' }}</p>
+        <ul class="genres" aria-label="Géneros">
+          @for (genre of selected.genres; track genre) {
+            <li>{{ genre }}</li>
+          }
+        </ul>
+        <p class="description">{{ selected.description }}</p>
+      </div>
+    </article>
+  }
+</section>

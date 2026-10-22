@@ -1,19 +1,37 @@
 # Catálogo
 
-`GET /api/contents` devuelve identificador, tipo, título, descripción, portada y géneros, ordenados por título. La base incluye dos contenidos ficticios de demostración.
+## `GET /api/contents`
 
-`GET /api/contents/{id}` devuelve esos mismos datos para un contenido. Si no existe, responde `404`. El título de cada tarjeta enlaza a `/catalog/{id}`, donde Angular consulta este endpoint y muestra el detalle.
+Devuelve los contenidos ordenados por título. El service convierte las entidades `Anime` y `Movie` a `ContentResponse`.
 
 ```mermaid
 flowchart LR
-  Page["CatalogPage"] --> Http["ContentService · Angular"]
-  Http --> Controller["ContentsController"]
-  Controller --> Service["ContentService · API"]
-  Service --> Repository["ContentRepository"]
-  Repository --> Context["AppDbContext"]
-  Context --> Database[("PostgreSQL")]
+  Request["GET /api/contents"] --> Controller["ContentsController.GetAll"]
+  Controller --> Service["ContentService.GetAll"]
+  Service --> Repository["ContentRepository.GetAll"]
+  Repository --> Database[("PostgreSQL")]
+  Database -->|Anime o Movie| Repository
+  Repository -->|Entidades| Service
+  Service -->|ContentResponse[]| Controller
+  Controller --> Response["200 · ContentResponse[]"]
 ```
 
-Las flechas indican llamadas. El repository recupera entidades `Anime` o `Movie`, ambas derivadas de `Content`; el service las convierte a `ContentResponse`.
+## `GET /api/contents/{id}`
 
-En desarrollo, Angular redirige `/api` a `localhost:5228` mediante su proxy. PostgreSQL escucha en `127.0.0.1:5434` y conserva sus datos en un volumen Docker.
+Busca un contenido por identificador. El controlador responde `404` si no existe; si existe, responde `200` con `ContentResponse`.
+
+```mermaid
+flowchart LR
+  Request["GET /api/contents/{id}"] --> Controller["ContentsController.GetById"]
+  Controller --> Service["ContentService.GetById"]
+  Service --> Repository["ContentRepository.Find"]
+  Repository --> Database[("PostgreSQL")]
+  Database -->|Content o vacío| Repository
+  Repository --> Service
+  Service -->|ContentResponse o null| Controller
+  Controller --> Exists{"¿Existe?"}
+  Exists -->|Sí| Response["200 · ContentResponse"]
+  Exists -->|No| NotFound["404 · Not Found"]
+```
+
+En Angular, la portada y el catálogo usan `GET /api/contents` y comparten la tarjeta que enlaza al detalle. El detalle usa `GET /api/contents/{id}`. En desarrollo, el proxy de Angular redirige `/api` a `localhost:5228`; PostgreSQL escucha en `127.0.0.1:5434`.

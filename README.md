@@ -2,7 +2,7 @@
 
 Proyecto de aprendizaje que simula una plataforma de streaming y gestión multimedia. Las demostraciones utilizan material de prueba; la aplicación no distribuye contenido protegido.
 
-Permite listar animes y películas y abrir su detalle con título, descripción y géneros. Usa .NET 10, Angular 22 y PostgreSQL.
+Permite explorar animes y películas, buscar por título, filtrar por tipo o género y consultar sus detalles. Usa .NET 10, Angular 22 y PostgreSQL.
 
 ## Ejecutar
 

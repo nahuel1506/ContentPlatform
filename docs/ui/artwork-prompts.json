@@ -1,0 +1,18 @@
+{
+  "generator": "imagegen, herramienta integrada",
+  "assets": [
+    {
+      "file": "Frontend/public/images/catalog/movie-backdrop.webp",
+      "prompt": "Use case: illustration-story. Asset type: cinematic backdrop for a fictional science-fiction media title, shown in a streaming catalog UI. Create original high quality photorealistic cinematic artwork, very wide landscape 16:9. A lonely radio astronomy dish on a remote rocky highland at blue hour, enormous Milky Way in the clear sky and one very subtle distant celestial signal, a small lone figure in a muted red parka next to the telescope. Compose the telescope on the RIGHT HALF, leave left third mostly quiet naturally dark blue-black sky and shadowed land for white UI text. Restrained desaturated navy, slate and warm red accent; cinematic film still, grounded physical textures, understated atmospheric science fiction. No text, no typography, no logos, no watermark, no border, no UI. It is a fictional placeholder artwork for a demo title called La última señal. Landscape, polished actual artwork, not a web mockup."
+    },
+    {
+      "file": "Frontend/public/images/catalog/movie-placeholder.webp",
+      "prompt": "Use case: illustration-story. Asset type: portrait 2:3 film cover artwork for a fictional science-fiction catalog title. Original photorealistic cinematic composition: lone radio telescope on rocky highlands under a vast starry night sky and Milky Way, person in muted red parka facing the dish. Same mood as an understated atmospheric science-fiction mystery, dark slate blue and black, dramatic natural starlight, clear silhouette. Telescope and person centered in lower-middle so subject remains visible when poster is cropped. No words, no typography, no title, no logos, no watermark, no borders, no UI. A beautiful believable movie poster image, vertical 2:3."
+    },
+    {
+      "file": "Frontend/public/images/catalog/anime-placeholder.webp",
+      "prompt": "Use case: illustration-story. Asset type: portrait 2:3 anime cover artwork for a fictional adventure catalog title. Original richly illustrated hand-painted anime movie poster, young traveler with small backpack looking out over vast lush mountain valley, charming small train winding across a stone viaduct, distant hilltop town at warm sunset, atmospheric layers of blue-green mountains and peach colored clouds. Quiet adventurous mood, detailed natural environment, original character and original landscape, not an existing franchise. Keep visual subject near center. No words, no typography, no title, no logos, no watermark, no borders, no UI. High quality actual cinematic illustrated artwork, portrait 2:3."
+    }
+  ],
+  "optimization": "Conversión a WebP (calidad 82); fondo de 1600 px de ancho, portadas de 640 px de ancho."
+}

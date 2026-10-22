@@ -1,0 +1,41 @@
+@if (loading()) {
+  <div class="page-container"><p class="notice" role="status">Cargando contenido...</p></div>
+} @else if (error()) {
+  <div class="page-container">
+    <p class="notice" role="alert">No se pudo cargar el catálogo.</p>
+  </div>
+} @else if (featured(); as selected) {
+  <section class="featured" aria-labelledby="featured-title">
+    <img
+      class="featured-backdrop"
+      [src]="backdropImage(selected)"
+      alt=""
+      fetchpriority="high"
+      (error)="handleImageError($event, selected, true)"
+    />
+    <div class="featured-shade"></div>
+    <div class="featured-inner page-container">
+      <div class="featured-copy">
+        <h1 id="featured-title">{{ selected.title }}</h1>
+        <p class="metadata">
+          {{ selected.type === 'Anime' ? 'Anime' : 'Película' }}
+          @if (selected.genres[0]) {
+            <span aria-hidden="true"> · </span>{{ selected.genres[0] }}
+          }
+        </p>
+        <p class="description">{{ selected.description }}</p>
+        <a class="primary-action" [routerLink]="['/catalog', selected.id]">Ver detalle</a>
+      </div>
+    </div>
+  </section>
+  <section class="catalog-preview page-container" aria-labelledby="preview-title">
+    <h2 id="preview-title">En el catálogo</h2>
+    <div class="content-rail">
+      @for (content of contents(); track content.id) {
+        <app-content-card [content]="content" />
+      }
+    </div>
+  </section>
+} @else {
+  <div class="page-container"><p class="notice">Todavía no hay contenido en el catálogo.</p></div>
+}

@@ -1,4 +1,18 @@
-<main>
-  <p>ContentPlatform</p>
+<header class="site-header">
+  <div class="header-inner page-container">
+    <a class="brand" routerLink="/" aria-label="ContentPlatform, inicio">ContentPlatform</a>
+    <nav aria-label="Navegación principal">
+      <a
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Inicio</a
+      >
+      <a routerLink="/catalog" routerLinkActive="active" ariaCurrentWhenActive="page">Explorar</a>
+    </nav>
+  </div>
+</header>
+<main class="page-shell">
   <router-outlet />
 </main>

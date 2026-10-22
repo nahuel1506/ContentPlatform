@@ -1,7 +1,64 @@
 :host {
   display: block;
-  max-width: 720px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
-  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+}
+.site-header {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  border-bottom: 1px solid var(--line);
+  background: #141619;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  height: 64px;
+}
+.brand {
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+nav {
+  display: flex;
+  align-self: stretch;
+  gap: 2rem;
+}
+nav a {
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid transparent;
+  padding-top: 3px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+nav a:hover,
+nav a.active {
+  color: var(--text);
+}
+nav a.active {
+  border-bottom-color: var(--accent);
+}
+.page-shell {
+  min-height: calc(100vh - 65px);
+}
+@media (max-width: 520px) {
+  .header-inner {
+    height: 60px;
+    gap: 1.5rem;
+  }
+  .brand {
+    font-size: 1rem;
+  }
+  nav {
+    gap: 1.25rem;
+  }
+  nav a {
+    font-size: 0.85rem;
+  }
 }
