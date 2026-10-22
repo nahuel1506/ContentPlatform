@@ -1,19 +1,29 @@
 # ContentPlatform
 
-ContentPlatform es un proyecto de aprendizaje que simula el funcionamiento de una plataforma de streaming y gestión de contenido multimedia.
+Proyecto de aprendizaje que simula una plataforma de streaming y gestión multimedia. Las demostraciones utilizan material de prueba; la aplicación no distribuye contenido protegido.
 
-## Alcance
+Actualmente incluye una API en .NET 10 y una interfaz en Angular 22 que muestra el estado de conexión con el backend.
 
-La aplicación no pretende distribuir películas, series ni otros contenidos protegidos. Su alcance es la simulación de una plataforma, utilizando material de prueba en las demostraciones de reproducción.
+## Ejecutar
 
-## Estado actual
+Requisitos: .NET SDK 10.0.402 y Node.js 24.15 o superior de la rama 24.
 
-El repositorio contiene la base de documentación y las reglas de configuración del proyecto. Todavía no contiene una aplicación ejecutable.
+API, desde la raíz:
+
+```sh
+dotnet run --project Backend/Api --launch-profile http
+```
+
+Frontend, en otra terminal:
+
+```sh
+cd Frontend
+npm ci
+npm start
+```
+
+Abrir [localhost:4200](http://localhost:4200). La API escucha en `http://localhost:5228`; el proxy de Angular redirige las llamadas a `/api`.
 
 ## Documentación
 
-- [Organización de la documentación](docs/README.md).
-
-## Configuración local
-
-El `.gitignore` excluye configuraciones locales, credenciales, archivos generados y datos de herramientas personales.
+[Arquitectura y flujos](docs/README.md).
