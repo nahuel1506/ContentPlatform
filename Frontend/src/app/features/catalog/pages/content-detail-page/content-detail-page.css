@@ -1,0 +1,32 @@
+article {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+img {
+  width: min(100%, 220px);
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+article > div {
+  flex: 1 1 240px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  padding: 0.25rem 0.5rem;
+  background: #eee;
+  border-radius: 4px;
+}

@@ -13,4 +13,11 @@ public class ContentsController(ContentService service) : ControllerBase
     {
         return Ok(service.GetAll());
     }
+
+    [HttpGet("{id:guid}")]
+    public ActionResult<ContentResponse> GetById(Guid id)
+    {
+        var content = service.GetById(id);
+        return content is null ? NotFound() : Ok(content);
+    }
 }

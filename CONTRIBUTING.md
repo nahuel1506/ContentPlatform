@@ -7,7 +7,7 @@ Usamos GitHub Flow: `main` contiene cambios revisados que compilan; cada funcion
 3. Revisar el diff y comprobar backend y frontend.
 4. Crear commits con una responsabilidad clara.
 5. Publicar la rama y abrir un pull request.
-6. Integrar cuando CI pase y se revise el cambio; eliminar la rama integrada.
+6. Integrar cuando CI pase y se revise el cambio. GitHub elimina automáticamente la rama remota al integrar el pull request.
 
 En un proyecto individual, la revisión consiste en leer el diff y comprobar el comportamiento antes de integrar. No requiere un segundo desarrollador.
 

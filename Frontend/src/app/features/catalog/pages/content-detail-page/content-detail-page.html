@@ -1,0 +1,23 @@
+<a routerLink="/">Volver al catálogo</a>
+
+@if (loading()) {
+  <p role="status">Cargando contenido...</p>
+} @else if (error()) {
+  <p role="alert">{{ error() }}</p>
+} @else if (content(); as selected) {
+  <article>
+    @if (selected.coverImageUrl) {
+      <img [src]="selected.coverImageUrl" [alt]="selected.title" />
+    }
+    <div>
+      <p>{{ selected.type === 'Anime' ? 'Anime' : 'Película' }}</p>
+      <h1>{{ selected.title }}</h1>
+      <p>{{ selected.description }}</p>
+      <ul aria-label="Géneros">
+        @for (genre of selected.genres; track genre) {
+          <li>{{ genre }}</li>
+        }
+      </ul>
+    </div>
+  </article>
+}
