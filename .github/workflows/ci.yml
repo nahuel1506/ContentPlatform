@@ -18,6 +18,8 @@ jobs:
           global-json-file: global.json
       - run: dotnet restore Backend/ContentPlatform.slnx
       - run: dotnet build Backend/ContentPlatform.slnx --no-restore --configuration Release
+      - run: dotnet tool restore
+      - run: dotnet ef migrations has-pending-model-changes --project Backend/Api --no-build --configuration Release
 
   frontend:
     runs-on: ubuntu-latest
